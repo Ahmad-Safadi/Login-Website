@@ -1,0 +1,62 @@
+button,input,a {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 30px;
+}
+
+.Container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.Container input[type="email"],
+.Container input[type="password"] {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: white;
+  padding: 12px;
+  margin-bottom: 15px;
+  width: 250px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.Container input[type="email"]:focus,
+.Container input[type="password"]:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+}
+
+.Container input[type="submit"] {
+  border-radius: 20px;
+  background: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px;
+  width: 150px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.Container input[type="submit"]:hover {
+  background: #45a049;
+}
+
+.Container2 {
+  text-align: center;
+  margin: 20px;
+  font-size: 14px;
+  color: #555;
+}
