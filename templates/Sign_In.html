@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link href="{{ url_for('static', filename='Sign_In_Style.css') }}" rel="stylesheet">
+  <title>Sing In</title>
+</head>
+<body>
+  <h1>Sing in</h1>
+  <form method="POST">
+    
+    <div class="Container">
+      <input name="Email" type="email" placeholder="Enter Your Email" required>
+      <input name="Password" type="password" placeholder="Enter Your Password" required><br>
+      <input type="submit" value="Send"><br>
+    </div>
+    
+  </form>
+  <div class="Container2">
+    <a href="/Sign_Up">I Don't Have an Account</a>
+  </div>
+  
+</body>
+</html>
