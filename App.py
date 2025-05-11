@@ -8,6 +8,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db = SQLAlchemy(app)
 
+app.secret_key = 'YourSecretKey'
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(200), nullable=False)
@@ -16,30 +18,35 @@ class User(db.Model):
     
 # ============= End_SQL =============#
 
+
 # ============== Sign_In ==============#
 
 @app.route('/', methods=['POST', 'GET'])
-def Sing_In():
+def Sign_In():
+    Error_Message1 = ''
+    Error_Message2 = ''
     if request.method == 'POST':
         Your_Email = request.form['Email']
         Your_Pass = request.form['Password']
-
+        
         user = User.query.filter(User.Email == Your_Email, User.Password == Your_Pass).first()
 
         if user:
+            session['Name'] = user.Name
             return redirect('/MainPage')
         else:
-            return 'Invalid credentials'
+            Error_Message1 = 'The Email is Wrong'
+            Error_Message2 = 'The Password is Wrong'
 
-    return render_template('Sign_In.html')
-    
+    return render_template('Sign_In.html',Error_Message1=Error_Message1,Error_Message2=Error_Message2)
+
 # ============ End_Sign_In ============#
 
 
 # ============= Sign_Up =============#
 
 @app.route('/Sign_Up', methods=['POST', 'GET'])
-def Sing_Up():
+def Sign_Up():
     if request.method == 'POST':
         New_Name = request.form['Name']
         New_Email = request.form['Email']
@@ -49,6 +56,7 @@ def Sing_Up():
         try:
             db.session.add(New_User)
             db.session.commit()
+            return redirect('/')
         except:
             return 'There was an issue'
     return render_template('Sign_Up.html')
@@ -60,7 +68,9 @@ def Sing_Up():
 
 @app.route('/MainPage', methods=['POST', 'GET'])
 def MainPage():
-	return render_template('MainPage.html')
+    name = session.get('Name', 'Guest')
+    
+    return render_template('MainPage.html', name=name)
 
 
 # =========== EndMainPage ===========#
