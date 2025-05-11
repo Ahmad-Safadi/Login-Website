@@ -1,12 +1,138 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <title>Hello, World!</title>
+  <meta charset="UTF-8">
+  <title>Main Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #e0eafc, #cfdef3);
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #2d3436;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px 20px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .card p, .card ul {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .card ul li {
+      margin: 8px 0;
+    }
+
+    .card ul li a {
+      text-decoration: none;
+      color: #3498db;
+      transition: color 0.2s;
+    }
+
+    .card ul li a:hover {
+      color: #2980b9;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+      background-color: #ecf0f1;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      .card {
+        padding: 20px 15px;
+      }
+    }
+  </style>
 </head>
-<body bgcolor="Green">
-  
-  <h1 style="color:white;text-align: center;margin-top: 250px;font-size: 50px">Your Html Code</h1>
+<body>
+
+  <header>
+    <h1>Welcome, {{ name }}</h1>
+  </header>
+
+  <main>
+    <div class="card">
+      <h2>About This Page</h2>
+      <p>This is a sample responsive dashboard created with Flask and HTML/CSS. Feel free to customize it!</p>
+    </div>
+
+    <div class="card">
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Status</h2>
+      <p>You are successfully logged in. This is your personal dashboard page.</p>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 FlaskApp Demo | Designed for Learning
+  </footer>
+
 </body>
 </html>
