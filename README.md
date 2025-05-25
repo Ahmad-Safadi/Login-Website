@@ -1,28 +1,56 @@
-# Login and Registration System
+# Flask Login & Registration System
 
-## About
-A Login and Registration system with a frontend built using **HTML/CSS**, and a backend using **Python** and **Flask**.  
-It includes:
-- Data validation
-- Session management
-- Responsive design
+## Overview
+A full-featured **Login and Registration** system built with **Flask**, featuring secure password handling, database integration via **SQLAlchemy**, and a clean, responsive interface using **HTML/CSS**.
 
-Perfect for learning the basics of **authentication** and **full-stack web development**.
+This project is perfect for learning:
+- User authentication
+- Session management in Flask
+- Password hashing
+- Full-stack web development fundamentals
 
 ---
 
 ## Features
-- User registration with input validation
-- Secure login with session handling
-- Responsive interface for desktop and mobile
-- Clean and simple UI with HTML/CSS
-- Flask-powered backend logic
+
+- **User Registration**
+  - Name, Email, and Password input
+  - Email uniqueness enforced
+  - Passwords hashed securely using `werkzeug.security`
+
+- **User Login**
+  - Email and password authentication
+  - Session creation on login
+  - Feedback for incorrect credentials
+
+- **Main Page**
+  - Displays the logged-in user's name
+  - Includes a secure logout button
+
+- **Session Handling**
+  - User sessions are managed securely using Flask’s built-in `session`
+
+- **Responsive Frontend**
+  - Mobile-friendly UI using basic CSS and media queries
+  - Interactive cards and layout
 
 ---
 
 ## Technologies Used
-- **Frontend**: HTML5, CSS3
-- **Backend**: Python, Flask
-- **Other**: Jinja2, Flask Sessions
+
+- **Frontend**:  
+  - HTML5  
+  - CSS3 (with responsive layout and hover effects)
+
+- **Backend**:  
+  - Python 3  
+  - Flask  
+
+- **Database**:  
+  - SQLite via SQLAlchemy ORM
+
+- **Security**:  
+  - Password hashing with `werkzeug.security`  
+  - Session handling with Flask  
 
 ---
