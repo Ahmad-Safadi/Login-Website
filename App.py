@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 
@@ -23,22 +24,21 @@ class User(db.Model):
 
 @app.route('/', methods=['POST', 'GET'])
 def Sign_In():
-    Error_Message1 = ''
-    Error_Message2 = ''
+    Error_Message = ''
     if request.method == 'POST':
         Your_Email = request.form['Email']
         Your_Pass = request.form['Password']
         
-        user = User.query.filter(User.Email == Your_Email, User.Password == Your_Pass).first()
+        user = User.query.filter_by(Email=Your_Email).first()
 
-        if user:
+        if user and check_password_hash(user.Password, Your_Pass):
             session['Name'] = user.Name
             return redirect('/MainPage')
         else:
-            Error_Message1 = 'The Email is Wrong'
-            Error_Message2 = 'The Password is Wrong'
+            Error_Message = 'The Email Or Password is Wrong'
+        
 
-    return render_template('Sign_In.html',Error_Message1=Error_Message1,Error_Message2=Error_Message2)
+    return render_template('Sign_In.html', Error_Message=Error_Message)
 
 # ============ End_Sign_In ============#
 
@@ -47,19 +47,21 @@ def Sign_In():
 
 @app.route('/Sign_Up', methods=['POST', 'GET'])
 def Sign_Up():
+    Error_Message = ''
     if request.method == 'POST':
         New_Name = request.form['Name']
         New_Email = request.form['Email']
         New_Pass = request.form['Password']
-        New_User = User(Name=New_Name, Email=New_Email, Password=New_Pass)
+        hashed_password = generate_password_hash(New_Pass)
+        New_User = User(Name=New_Name, Email=New_Email, Password=hashed_password)
 
         try:
             db.session.add(New_User)
             db.session.commit()
             return redirect('/')
         except:
-            return 'There was an issue'
-    return render_template('Sign_Up.html')
+            Error_Message = 'This email is already in use.'
+    return render_template('Sign_Up.html',Error_Message=Error_Message)
     
 # =========== End_Sign_Up ===========#
 
@@ -69,9 +71,14 @@ def Sign_Up():
 @app.route('/MainPage', methods=['POST', 'GET'])
 def MainPage():
     name = session.get('Name', 'Guest')
+    if request.method == 'POST':
+    	LogOut = request.form['LogOut']
+    	if LogOut:
+    		session.clear()
+    		return redirect('/')
+    		
     
     return render_template('MainPage.html', name=name)
-
 
 # =========== EndMainPage ===========#
 
